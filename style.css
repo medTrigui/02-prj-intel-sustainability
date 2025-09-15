@@ -1,1 +1,202 @@
-/* Add your CSS here */
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* Header/Hero Section */
+header {
+    background: linear-gradient(135deg, #0071c5 0%, #00aeef 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+header img {
+    width: 180px;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* Timeline Section */
+section {
+    padding: 4rem 2rem;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 2rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: #0071c5 #f5f5f5;
+}
+
+/* Customize scrollbar */
+section::-webkit-scrollbar {
+    height: 8px;
+}
+
+section::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+section::-webkit-scrollbar-thumb {
+    background: #0071c5;
+    border-radius: 4px;
+}
+
+/* Timeline Cards */
+.timeline-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+    max-width: 300px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    scroll-snap-align: center;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.timeline-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 1rem 0;
+    transition: transform 0.3s ease;
+}
+
+.timeline-card:hover {
+    transform: translateY(-10px) rotate3d(1, 1, 0, 2deg);
+    box-shadow: 
+        0 12px 20px rgba(0, 113, 197, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 113, 197, 0.5);
+}
+
+.timeline-card:hover img {
+    transform: scale(1.05) translateY(-5px);
+    filter: brightness(1.1) contrast(1.1);
+}
+
+/* Add perspective for 3D transforms */
+section {
+    perspective: 1000px;
+}
+
+.timeline-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #0071c5;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.timeline-card:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+section h2 {
+    color: #0071c5;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+section h2::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    bottom: -4px;
+    left: 0;
+    background: linear-gradient(90deg, #0071c5, #00aeef);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+}
+
+.timeline-card:hover h2::before {
+    transform: scaleX(1);
+}
+
+section h3 {
+    color: #333;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    transform: translateZ(0);
+    transition: color 0.3s ease;
+}
+
+.timeline-card:hover h3 {
+    color: #0071c5;
+}
+
+section p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.timeline-card:hover p {
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    section {
+        flex-direction: column;
+        align-items: center;
+        overflow-x: visible;
+    }
+
+    section > div {
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+}
